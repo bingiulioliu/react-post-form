@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styles from "./PostForm.module.css";
+
 
 const API_URL = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts';
 
@@ -12,6 +14,22 @@ const formDataInitial = {
 function PostForm() {
     const [formData, setFormData] = useState(formDataInitial);
 
+    const handleChange = (event) =>{
+        // Recupero il necessario dal target
+        const {name, value, tagType, checked} = event.target;
+
+        // Terna per decidere cosa salvare
+        // Se è un checkbox checked, altrimenti value
+        const valueToUpdate = (tagType === 'checked' ? checked : value);
+
+        // Two way data binding
+        const newDataForm = {
+            ...formData,            // Copio i valori con spread
+            [name]: valueToUpdate   // aggiorno la chiave
+        };
+
+        setFormData(newDataForm)
+    };
 
     return <>
         <div className="container d-flex justify-content-center align-items-center">
@@ -40,6 +58,7 @@ function PostForm() {
                     <input type="checkbox"/>
                 </div>
             </form>
+            <p>{JSON.stringify(formData)}</p>
         </div>
     </>;
 }
