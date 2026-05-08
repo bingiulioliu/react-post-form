@@ -31,12 +31,25 @@ function PostForm() {
         setFormData(newDataForm)
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('click');
+        fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        }).then(response =>{
+            return response.json();
+        }).then(json =>{
+            console.log(json);
+        })
+    }
+
     return <>
         <div className="container d-flex justify-content-center align-items-center">
             <h1 className={`${styles.title} text-primary`}>Post Form</h1>
         </div>
         <div className="container d-flex justify-content-center align-items-center">
-            <form>
+            <form onSubmit={handleSubmit}>
                 {/* Nome autore */}
                 <div>
                     <label htmlFor="author">Autore</label>
