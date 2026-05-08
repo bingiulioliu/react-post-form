@@ -16,11 +16,11 @@ function PostForm() {
 
     const handleChange = (event) =>{
         // Recupero il necessario dal target
-        const {name, value, tagType, checked} = event.target;
+        const {name, value, type, checked} = event.target;
 
         // Terna per decidere cosa salvare
         // Se è un checkbox checked, altrimenti value
-        const valueToUpdate = (tagType === 'checked' ? checked : value);
+        const valueToUpdate = (type === 'checkbox' ? checked : value);
 
         // Two way data binding
         const newDataForm = {
@@ -54,12 +54,13 @@ function PostForm() {
                 </div>
                 {/* Pubblico o bozza */}
                 <div>
-                    <label htmlFor="public">Pubblico</label>
+                    <label htmlFor="public">Pubblica o salva in bozza</label>
                     <input type="checkbox" name="public" id="public" checked={formData.public} onChange={handleChange}/>
                 </div>
+                <button className="btn btn-primary">Invia post</button>
             </form>
-            <p>{JSON.stringify(formData)}</p>
         </div>
+        <p>{JSON.stringify(formData)}</p>
     </>;
 }
 export default PostForm;
