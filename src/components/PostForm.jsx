@@ -39,23 +39,23 @@ function PostForm() {
             <form>
                 {/* Nome autore */}
                 <div>
-                    <label htmlFor="autore">Autore</label>
-                    <input type="text" placeholder="Inserire il nome dell'autore" />
+                    <label htmlFor="author">Autore</label>
+                    <input id="author" name="author" onChange={handleChange} value={formData.author} type="text" placeholder="Inserire il nome dell'autore" />
                 </div>
                 {/* Titolo del post */}
                 <div>
-                    <label htmlFor="titolo">Titolo</label>
-                    <input type="text" placeholder="Inserire il titolo del post" />
+                    <label htmlFor="title">Titolo</label>
+                    <input id="title" name="title" onChange={handleChange} value={formData.title} type="text" placeholder="Inserire il titolo del post" />
                 </div>
                 {/* Corpo del testo */}
                 <div>
-                    <label htmlFor="corpo">Contenuto</label>
-                    <textarea type="text" rows="5" placeholder="Inserire il contenuto del post" />
+                    <label htmlFor="body">Contenuto</label>
+                    <textarea id="body" name="body" onChange={handleChange} value={formData.body} type="text" rows="5" placeholder="Inserire il contenuto del post" />
                 </div>
                 {/* Pubblico o bozza */}
                 <div>
-                    <label htmlFor="pubblico">Pubblico</label>
-                    <input type="checkbox"/>
+                    <label htmlFor="public">Pubblico</label>
+                    <input type="checkbox" name="public" id="public" checked={formData.public} onChange={handleChange}/>
                 </div>
             </form>
             <p>{JSON.stringify(formData)}</p>
