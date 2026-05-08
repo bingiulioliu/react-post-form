@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "./PostForm.module.css";
+import { Alert } from "bootstrap";
 
 
-const API_URL = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts';
+const API_URL = 'https://FAKE67c5b4f3351c081993fb1ab6.mockapi.io/api/posts';
 
 const formDataInitial = {
     author:'',
@@ -36,13 +37,19 @@ function PostForm() {
         console.log('click');
         fetch(API_URL, {
             method: 'POST',
+            headers:{
+                'Content-type': 'application/json'
+            },
             body: JSON.stringify(formData)
         }).then(response =>{
             return response.json();
         }).then(json =>{
             console.log(json);
-        })
-    }
+            alert('Post inviato!');
+            setFormData(formDataInitial);
+        }).catch(error => console.error('Qualcosa è andato storto!'));
+    };
+    
 
     return <>
         <div className="container d-flex justify-content-center align-items-center">
