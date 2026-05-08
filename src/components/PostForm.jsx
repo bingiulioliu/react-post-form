@@ -58,26 +58,30 @@ function PostForm() {
         <div className="container d-flex justify-content-center align-items-center">
             <form onSubmit={handleSubmit} className="row g-3 shadow p-4 rounded bg-secondary">
                 {/* Nome autore */}
-                <div className="col-6">
+                <div className="col-12">
                     <label htmlFor="author" className="form-label fw-bold">Autore</label>
                     <input id="author" name="author" onChange={handleChange} value={formData.author} type="text" placeholder="Inserire il nome dell'autore" />
                 </div>
                 {/* Titolo del post */}
-                <div className="col-6">
+                {formData.author !== '' && (
+                <div className="col-12">
                     <label htmlFor="title" className="form-label fw-bold">Titolo</label>
                     <input id="title" name="title" onChange={handleChange} value={formData.title} type="text" placeholder="Inserire il titolo del post" />
-                </div>
+                </div> )}
                 {/* Corpo del testo */}
+                {formData.title !== '' && (
                 <div className="col-12">
                     <label htmlFor="body" className="form-label fw-bold">Contenuto</label>
                     <textarea id="body" name="body" onChange={handleChange} value={formData.body} type="text" rows="1" cols="80" placeholder="Inserire il contenuto del post" />
-                </div>
+                </div> )}
                 {/* Pubblico o bozza */}
+                {formData.body !== '' && (
                 <div className="col-12">
                     <label htmlFor="public" className="form-label fw-bold">Pubblica o salva in bozza</label>
                     <input type="checkbox" name="public" id="public" checked={formData.public} onChange={handleChange} />
-                </div>
-                <button className="btn btn-primary btn-sm">Invia post</button>
+                </div>)}
+                {formData.body !== '' && (
+                <button className="btn btn-primary btn-sm">Invia post</button>)}
             </form>
         </div>
         <p>{JSON.stringify(formData)}</p>
